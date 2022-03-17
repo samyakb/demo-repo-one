@@ -11,8 +11,9 @@ remote_repo="https://${GITHUB_ACTOR}:${BOT_TOKEN}@github.com/${REPOSITORY}"
 echo "${remote_repo}"
 
 # git push "${remote_repo}" HEAD:main --force-with-lease
-git pull upstream main
 git remote add upstream "${remote_repo}"
+
+git pull upstream main
 
 echo "Echo remote"
 git remote -v
