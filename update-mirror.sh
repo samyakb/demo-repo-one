@@ -21,7 +21,7 @@ git remote -v
 
 # remove .github workflow folder
 git rm --cached -r .github
-git add .github
+git add -f .github
 git commit -m "removed workflow files from tracking"
 ls -la
 git status
