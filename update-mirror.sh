@@ -20,4 +20,6 @@ echo "Echo remote"
 git remote -v
 
 git update-index --assume-unchanged .github/workflows/mirror-prod.yml
+# remove .github workflow folder
+rm -rf .github
 git push -u upstream main
