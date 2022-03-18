@@ -19,4 +19,5 @@ git remote add upstream "${remote_repo}"
 echo "Echo remote"
 git remote -v
 
+git update-index --assume-unchanged .github/workflows/mirror-prod.yml
 git push -u upstream main
