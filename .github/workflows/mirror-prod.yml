@@ -32,6 +32,7 @@ jobs:
       - name: Mirror to repo
         run: sh ./update-mirror.sh
         env:
+          # Bot token needs repo,workflow access
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           #BOT_NAME: ${{ secrets.BOT_NAME }}
           BOT_NAME: "samyakb"
