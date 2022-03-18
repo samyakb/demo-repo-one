@@ -14,9 +14,9 @@ echo "${remote_repo}"
 # git push "${remote_repo}" HEAD:main --force-with-lease
 git remote add upstream "${remote_repo}"
 
-git pull upstream main
+# git pull upstream main
 
 echo "Echo remote"
 git remote -v
 
-git push upstream main
+git push -u upstream main
