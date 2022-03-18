@@ -4,7 +4,8 @@ set -e
 
 BOT_TOKEN=${BOT_TOKEN}
 GITHUB_ACTOR=${BOT_NAME}
-REPOSITORY="samyakb/demo-repo-two"
+# TODO: later move this to secret token
+REPOSITORY="samyakb/demo-repo-three"
 
 remote_repo="https://${GITHUB_ACTOR}:${BOT_TOKEN}@github.com/${REPOSITORY}"
 
