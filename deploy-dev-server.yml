@@ -1,0 +1,46 @@
+name: Deploy Server files to Instance 
+on:
+  pull_request:
+    types: closed
+    paths: 
+      - 'server/**'
+    branches:
+      # Change this branch depending on enviornment ex. dev / main
+      - dev 
+
+jobs:
+  # Check for successfully build before uploading       
+  deploy:
+    if: github.event.pull_request.merged == true
+    name: Serverless Deploy to Staging
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./server
+    strategy:
+      matrix:
+        python-version: [3.8]
+        node-version: ['14.19.0']
+        
+    steps:
+      - uses: actions/checkout@v2
+  
+      # Initialize Nodejs
+      - name: Install Nodejs ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      # Instal dependency    
+      - name: Install Dependency
+        run: npm ci 
+      # Setup AWS credentials  
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1 # change region
+      # Deploy to serverless  
+      - name: Deploy to serverless
+        run: npx serverless deploy
